@@ -1,4 +1,7 @@
 package com.automatizador.json.controller;
+import com.automatizador.json.domain.ContatoData;
+import com.automatizador.json.domain.ContatoDomain;
+import com.automatizador.json.domain.ProdutoDomain;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,10 +19,25 @@ public class ArquivoController {
     @GetMapping("/gerar-arquivo-json")
     public void gerarArquivoJson(HttpServletResponse response) throws IOException {
         // Cria um objeto de exemplo
-        Map<String, Object> dados = new HashMap<>();
-        dados.put("nome", "Pablo da Silva");
-        dados.put("idade", 30);
-        dados.put("endereco", "Rua dos Bobos, 0, Vila dos Pombos, São Paulo - SP, 01234-567");
+        ContatoData contatoData = new ContatoData();
+        ContatoDomain contatoDomain = new ContatoDomain();
+        ProdutoDomain produtoDomain = new ProdutoDomain();
+        contatoData.setData(contatoDomain);
+
+        String contatoDataJson = contatoData.getClass().getSimpleName();
+
+        contatoDomain.setName("Pedro");
+        contatoDomain.setEndereço("Rua dos Bobos, Vale do Silêncio - SP");
+        contatoDomain.setIdade(21);
+        contatoDomain.setNacionalidade("brasileiro");
+        contatoDomain.setSexo("masculino");
+        contatoDomain.setProdutoDomain(produtoDomain);
+        produtoDomain.setMarca("Baby Johson");
+        produtoDomain.setPreço("R$ 35");
+        produtoDomain.setValidade("20/10/2023");
+
+        Map<String, ContatoDomain> dados = new HashMap<>();
+        dados.put(contatoDataJson, contatoDomain);
 
         // Cria um objeto ObjectMapper para serializar em JSON
         ObjectMapper mapper = new ObjectMapper();

@@ -1,0 +1,5 @@
+com\automatizador\json\domain\ContatoDomain.class
+com\automatizador\json\controller\ArquivoController.class
+com\automatizador\json\JsonApplication.class
+com\automatizador\json\domain\ProdutoDomain.class
+com\automatizador\json\domain\ContatoData.class
